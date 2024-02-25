@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Lance Keith">
+    <title>FoodView | Inventory</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        tr:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 100; 
+            padding-top: 80px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+}
+
+        .modalContent {
+            background-color: #BFEDFF;
+            margin: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 40px;
+            border: 1px solid black;
+            width: 40%;
+            height: 40%;
+            align-content: center;
+            text-align: center;
+            justify-content: center;
+            }
+        
+    </style>
+</head>
+
+<body>
+    <element onload="connectDB();"></element>
+    <nav>
+        <a href="floorMap.html">Floormap</a>
+        <a href="waitlist.html">Waitlist</a>
+        <a href="cookqueue.html">CookQueue</a>
+        <a class="inactive-link" href="inventory.html">Inventory</a>
+    </nav>
+    <br>
+    <!--<table class="fixedHeader">
+    <thead>
+    <tr>
+        <th>Ingredient</th>
+        <th>Item Associations</th>
+        <th>QTY</th>
+        <th>UOM</th>
+    </tr>
+    </thead>
+    </table> -->
+    <table id="inventoryTable">
+
+        <thead>
+            <tr class="fixedHeader">
+                <th>Ingredient</th>
+                <th>Item Associations</th>
+                <th>QTY</th>
+                <th>UOM</th>
+                <th style="width: 10px;">Delete Item</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>lorem</td>
+                <td>ipsum</td>
+                <td><input class="noPad" style="position: relative;width:50px;right:0px;" type="number" id="inventoryQTY" name="inventoryQTY">                        placeholder="--"></td>
+                <td>lbs</td> <!--Delete button below-->
+                <td><button onclick="deleteRecord(this);"><b>&times;</b></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="willHide" id="addIngredient" onclick="addIngredient();">
+        <img style="border-radius:100%;height:20px; width:20px;" src="images/plusicon.jpg">
+        &nbsp;Add Ingredient
+    </button>
+    <form id="theForm" class="formHide">
+        <input class="inputMatch" style="margin-top:10px;" type='text' id="ingredientName" name="ingredientName" placeholder="Ingredient" />
+        <input class="inputMatch" style="margin-top:10px;" type='text' id='associations'
+            placeholder="Item Associations" />
+        <input class="inputMatch" style="margin-top:10px;" type='text' id="UOM" name="UOM" placeholder="UOM" />
+        <input class="inputMatch" style="display: inline-flex;justify-content: center;align-items: center;
+            margin-top: 10px;padding: 5px;background-color: #396C80;color: white;border: none;border-radius: 5px;" type="button"
+            value="Save" onclick="submitData(); reset();">
+        <input class="inputMatch" style=" display: inline-flex;justify-content: center;align-items: center;
+            margin-top: 10px;padding: 5px;background-color: rgb(189, 29, 29);color: white;border: none;border-radius: 5px;"
+            type="button" value="Cancel" onclick="hideForm(); reset();">
+    </form>
+    <div id="checkModal" class="modal">
+        
+
+        <!-- Check modal 
+        <div class="modalContent" id="modalCheck">
+          <span class="close">&times;</span>
+          <h1>Are you sure you want to delete?</h1>
+          <p>The ingredient will be permanently deleted from the database. 
+            <br>This can not be undone.</p>
+            <button onclick="deleteRecord(this);">Yes, Delete</button>    
+            <button onclick="closeModal();">No, Cancel</button>          
+        </div>  
+        </div>-->
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("tr").click(function () {
+            $("tr").removeClass("highlight");
+            $(this).addClass("highlight");
+        });
+    });
+
+
+    function deleteRecord(ing) {
+        $(ing).parents("tr").remove();
+    }
+
+    function connectDB(){
+            $.ajax({
+                url: "db_connect.py",
+                context: document.body
+            })
+        }
+        function submitData() { //This is what adds a row in inventory.
+            var table = document.getElementById("inventoryTable");
+            var row = table.insertRow();
+            var ingredient = row.insertCell(0);
+            var associations = row.insertCell(1);
+            var qty = row.insertCell(2);
+            var UOM = row.insertCell(3);
+            var del = row.insertCell(4)
+            ingredient.innerHTML = document.getElementById('ingredient').value;
+            associations.innerHTML = document.getElementById('associations').value;
+            qty.innerHTML = 
+            `<input class="noPad" style="position: relative;width:50px;right:0px;" type="number" value="inputQty" name="inventoryQTY" placeholder="--">`;
+            UOM.innerHTML = document.getElementById('UOM').value;
+            del.innerHTML = `<button onclick="deleteRecord(this);"><b>&times;</b></button>`;
+} 
+
+</script>
+<script type="text/javascript" src="static/jquery-3.6.3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="static/main.js"></script>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Lance Keith">
+    <!--<meta http-equiv="Refresh" content="3; URL=index.html">-->
+    <title>FoodView</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+        .loginBlock {
+            position: fixed;
+            top: 30%;
+            left: 45%;
+            align-items: center;
+            border: #396C80 1px;
+            width: 250px;
+        
+        }
+
+        .container {
+            padding: 10px;
+        }
+       
+        button {
+            background-color: #396C80;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            
+            
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border: 1px solid #396C80;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        #login-error {
+            width: 100%;
+            text-align: center;
+            margin: 0;
+            padding: 5px;
+            color: rgb(97, 3, 3);
+            border: 1px solid rgb(255, 0, 0);
+            background-color: rgb(255, 143, 143);
+            opacity: 0;
+        }
+        #login-success {
+            width: 100%;
+            text-align: center;
+            margin: 0;
+            padding: 5px;
+            color: rgb(3, 97, 3);
+            border: 1px solid rgba(0, 255, 0,);
+            background-color: rgb(156, 255, 143);
+            opacity: 0;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="loginBlock">
+    <h1 style="text-align: center;">
+        FoodView
+    </h1>
+    <img class="center" style="width: 100px; height: 80px; align-items: center;" 
+    src="images/FoodViewPlaceholder.PNG" alt="FoodView Logo (Placeholder)">
+    <br>
+    <p id="login-error">Invalid login credentials</p>
+    <P id="login-success">Success!</P>
+    <form id="login" method="post">
+        
+        <div class="container">
+            
+            <input type="text" placeholder="Enter username or phone number" name="username" required>
+            <br> 
+            <br>
+            <input type="password" placeholder="Password" name="password" required>
+            <br>
+            <br>
+            <button class="center" type="submit" id="login-submit">Login</button>
+        
+    </div>
+    </form> 
+</div>
+</body>
+<script>
+const loginForm = document.getElementById("login");
+const loginButton = document.getElementById("login-submit");
+const loginErrorMsg = document.getElementById("login-error");
+const loginSuccess = document.getElementById("login-success");
+function delayFloor() {
+        location.href = "floormap.php";
+    }
+
+loginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const username = loginForm.username.value;
+    const password = loginForm.password.value;
+    
+    if (username === "superuser" && password === "user2131") {
+        loginSuccess.style.opacity = 1;
+        loginErrorMsg.style.opacity = 0;
+        setInterval(delayFloor, 1000);
+        
+    } else {
+        loginErrorMsg.style.opacity = 1;
+    }
+})
+</script>
+</html>

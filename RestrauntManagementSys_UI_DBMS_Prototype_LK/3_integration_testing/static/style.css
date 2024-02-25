@@ -1,0 +1,161 @@
+html {
+    background-color: #BFEDFF;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 
+    Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, p, a, table, button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 
+    Arial, sans-serif;
+}
+
+h1 {
+    color: #224F6E;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+a:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }
+
+a:link, a:visited {
+    text-decoration: none;
+    background-color: #396C80;
+    color: white;
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    border: 2px solid black;
+    margin: -3px; 
+}
+
+.inactive-link {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.4;
+    color: black;
+}
+
+table {
+    //border: solid black 2px;
+    width: 100%;
+    text-align: left;
+    table-layout: auto;
+    margin: -3px; 
+    border-collapse: collapse;
+}
+
+tr {
+    width: 95%;
+    height: auto;   
+}
+
+/**tr:nth-child(even){
+    background-color: #73D7FF;
+}**/
+
+
+th {
+    border-top: solid black 2px;
+    border-bottom: solid black 2px;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    width: auto;
+    left: 2px;
+}
+
+td {
+    border-bottom: solid #607680 1px;
+    border-left: 0px;
+    border-right: 0px;
+    width: auto;
+    
+}
+
+.fixedHeader {
+    //position: fixed;
+    background-color: #396C80;
+    color: white;
+    width: 99%;
+}
+
+.fixedHeader:hover{
+    opacity: 1;
+    cursor: default;
+}
+
+.highlight {
+    background-color: #73D7FF;
+}
+
+button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #396C80;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    
+}
+button:hover {
+    cursor: pointer;
+}
+
+.willHide {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #396C80;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    position: absolute; 
+    right: 10px;
+}
+
+.inputMatch {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.container{
+    display: block;
+    margin-top: 10px;
+    padding: 0px;
+    border: 0px;
+    width: 98%;
+    height: 90%;
+    background-color: #607680;
+    opacity: 1;
+    position: absolute;
+}
+
+
+.formHide {
+    display: none;
+}
